@@ -1,0 +1,15 @@
+
+(py310) D:\project_backdoor\BackdoorBench>python Detect_pre/compare_layers.py
+layer1: AUC = 1.0000 ± 0.0000
+layer2: AUC = 1.0000 ± 0.0000
+layer3: AUC = 1.0000 ± 0.0000
+layer4: AUC = 1.0000 ± 0.0000
+
+
+(py310) D:\project_backdoor\BackdoorBench>python Detect_pre/compare_layers_blended.py
+layer1: AUC = 1.0000 ± 0.0000
+layer2: AUC = 1.0000 ± 0.0000
+layer3: AUC = 1.0000 ± 0.0000
+layer4: AUC = 1.0000 ± 0.0000
+
+(py310) D:\project_backdoor\BackdoorBench>
