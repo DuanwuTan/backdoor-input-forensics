@@ -29,7 +29,7 @@ for layer in layers:
     
     print(f"{layer}: 重要通道索引 {top_idx}")
     
-    # 可选：绘制这些通道在两类样本上的均值对比
+    # 绘制这些通道在两类样本上的均值对比
     poison_mean = poison.mean(axis=0)[top_idx]
     clean_mean = clean.mean(axis=0)[top_idx]
     
@@ -53,7 +53,7 @@ sets = {layer: set(important_channels[layer]) for layer in layers}
 common_all = set.intersection(*sets.values())
 print(f"\n所有层共有的重要通道索引: {common_all}")
 
-# 可视化重叠（Venn 图需要安装 matplotlib_venn，可选）
+# 可视化重叠（Venn 图需要安装 matplotlib_venn）
 try:
     from matplotlib_venn import venn3, venn2
     if len(layers) == 4:
@@ -64,4 +64,4 @@ try:
         plt.savefig('figures/0220/venn_layer1_layer2.png', dpi=150)
         plt.show()
 except ImportError:
-    print("若要画 Venn 图，请安装 matplotlib_venn：pip install matplotlib-venn")
+    print("请安装 matplotlib_venn 以显示 Venn 图")

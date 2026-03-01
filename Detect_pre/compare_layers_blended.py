@@ -5,7 +5,6 @@ from sklearn.metrics import roc_curve, auc
 import matplotlib.pyplot as plt
 import os
 
-# 创建保存图片的文件夹
 os.makedirs('figures/0217', exist_ok=True)
 
 # 层列表

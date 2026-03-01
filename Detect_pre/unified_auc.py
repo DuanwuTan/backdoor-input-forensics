@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import cross_val_score
 
-attacks = ['badnets', 'blended', 'wanet']
+attacks = ['badnets', 'blended', 'wanet', 'sig', 'refool', 'inputaware']
 layers  = ['layer1', 'layer2', 'layer3', 'layer4']
 
 auc_matrix = np.zeros((len(attacks), len(layers)))
@@ -22,7 +22,7 @@ for i, atk in enumerate(attacks):
         auc_matrix[i, j] = auc
         print(f'{atk:10s} {layer}: AUC={auc:.4f}')
 
-os.makedirs('figures/0224', exist_ok=True)
+os.makedirs('figures/0225', exist_ok=True)
 fig, ax = plt.subplots(figsize=(7, 4))
 im = ax.imshow(auc_matrix, cmap='RdYlGn', vmin=0.5, vmax=1.0)
 ax.set_xticks(range(4)); ax.set_xticklabels(layers)
@@ -31,7 +31,7 @@ plt.colorbar(im)
 for i in range(len(attacks)):
     for j in range(4):
         ax.text(j, i, f'{auc_matrix[i,j]:.3f}', ha='center', va='center', fontsize=11)
-ax.set_title('AUC Heatmap: 3 Attacks x 4 Layers')
+ax.set_title('AUC Heatmap: 6 Attacks x 4 Layers')
 plt.tight_layout()
-plt.savefig('figures/0224/auc_heatmap_3attacks.png', dpi=150)
-print('\nAUC热力图已保存到 figures/0224/auc_heatmap_3attacks.png')
+plt.savefig('figures/0225/auc_heatmap_6attacks.png', dpi=150)
+print('\nAUC热力图已保存到 figures/0225/auc_heatmap_6attacks.png')

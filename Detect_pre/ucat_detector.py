@@ -105,7 +105,7 @@ def evaluate(attack_name):
 
 if __name__ == '__main__':
     results = []
-    for atk in ['badnets', 'blended', 'wanet']:
+    for atk in ['badnets', 'blended', 'wanet', 'sig', 'refool', 'inputaware']:
         r = evaluate(atk)
         results.append(r)
 
@@ -115,7 +115,7 @@ if __name__ == '__main__':
     for r in results:
         print(f'{r["attack"]:<12} {r["auroc"]:>8.4f} {r["fpr95"]:>12.4f}')
 
-    os.makedirs('figures/0224', exist_ok=True)
+    os.makedirs('figures/0225', exist_ok=True)
     fig, ax = plt.subplots(figsize=(7, 4))
     attacks = [r['attack'] for r in results]
     aurocs  = [r['auroc']  for r in results]
@@ -129,5 +129,5 @@ if __name__ == '__main__':
                 f'{val:.4f}', ha='center', fontsize=10)
     ax.legend()
     plt.tight_layout()
-    plt.savefig('figures/0224/ucat_results.png', dpi=150)
+    plt.savefig('figures/0225/uucat_results_6attacks.png', dpi=150)
     print('\nUCAT结果图已保存')

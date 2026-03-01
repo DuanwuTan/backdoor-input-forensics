@@ -101,9 +101,9 @@ def blend_images(
         # generate the blended image with ghost effect
         if offset[0] == 0 and offset[1] == 0:
             offset = (random.randint(3, 8), random.randint(3, 8))
-        r_1 = np.lib.pad(r, ((0, offset[0]), (0, offset[1]), (0, 0)),
+        r_1 = np.pad(r, ((0, offset[0]), (0, offset[1]), (0, 0)),
                          'constant', constant_values=0)
-        r_2 = np.lib.pad(r, ((offset[0], 0), (offset[1], 0), (0, 0)),
+        r_2 = np.pad(r, ((offset[0], 0), (offset[1], 0), (0, 0)),
                          'constant', constant_values=(0, 0))
         if ghost_alpha < 0:
             ghost_alpha = abs(round(random.random()) - random.uniform(0.15, 0.5))

@@ -36,7 +36,7 @@ with torch.no_grad():
 layer3_out = activations[0].squeeze().numpy()  # (256, 2, 2)
 handle.remove()
 
-# 重要通道索引（请替换为你自己的值！）
+# 重要通道索引
 important_idx = np.array([248, 105, 135, 223, 7, 147, 224, 73, 214, 102, 12, 62, 245, 200, 222, 82, 91, 125, 215, 29])
 # 提取这些通道的 2x2 激活图
 important_maps = layer3_out[important_idx]  # (20, 2, 2)

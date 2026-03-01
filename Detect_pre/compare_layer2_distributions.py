@@ -45,7 +45,7 @@ m = 0.5 * (h_clean + h_poison)
 js = 0.5 * (jensenshannon(h_clean.flatten(), m.flatten()) + jensenshannon(h_poison.flatten(), m.flatten()))
 print(f"JS散度 (8x8网格): {js:.4f}")
 
-# 3. 置换检验：比较质心距离图像中心(16,16)的欧氏距离
+# 3. 比较质心距离图像中心(16,16)的欧氏距离
 center = np.array([16,16])
 clean_dist = np.linalg.norm(clean_pos - center, axis=1)
 poison_dist = np.linalg.norm(poison_pos - center, axis=1)

@@ -55,6 +55,6 @@ def run(attack_name):
         print(f'  {layer}: clean={cf.shape}, bd={bf.shape}')
 
 if __name__ == '__main__':
-    for atk in ['badnets', 'blended', 'wanet']:
+    for atk in ['badnets', 'blended', 'wanet', 'sig', 'refool', 'inputaware']:
         run(atk)
     print('\n完成！等新模型训练好再跑后三个')
