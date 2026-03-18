@@ -156,7 +156,7 @@ def np_4d_to_tensor(inputs, args):
 
 @jit(float64[:](float64[:], int64, float64[:]), nopython=True)
 def rnd1(x, decimals, out):
-    return np.round_(x, decimals, out)
+    return np.round(x, decimals, out)
 
 
 @jit(nopython=True)
