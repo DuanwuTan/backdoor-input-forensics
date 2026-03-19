@@ -51,3 +51,11 @@ if __name__ == '__main__':
             evaluate_final(a)
         except Exception as e:
             print(f"评估 {a} 失败: {e}")
+if __name__ == '__main__':
+    # 加上新成员
+    attacks = ['badnets', 'blended', 'wanet', 'sig', 'refool', 'inputaware', 'lira', 'bpp']
+    for a in attacks:
+        try:
+            evaluate_final(a)
+        except Exception as e:
+            print(f"评估 {a} 失败: {e}")
