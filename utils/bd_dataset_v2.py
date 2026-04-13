@@ -83,16 +83,27 @@ class dataset_wrapper_with_transform(torch.utils.data.Dataset):
         self.wrapped_dataset = obj
         self.wrap_img_transform = wrap_img_transform
         self.wrap_label_transform = wrap_label_transform
-
-    def __getattr__(self, attr):
-        # # https://github.com/python-babel/flask-babel/commit/8319a7f44f4a0b97298d20ad702f7618e6bdab6a
-        # # https://stackoverflow.com/questions/47299243/recursionerror-when-python-copy-deepcopy
-        # if attr == "__setstate__":
-        #     raise AttributeError(attr)
-        if attr in self.__dict__:
-            return getattr(self, attr)
-        return getattr(self.wrapped_dataset, attr)
-
+        
+    def subset(self, indices):
+        """显式增加 subset 方法，防止 AC 等防御脚本崩溃"""
+        if hasattr(self.dataset, 'subset'):
+            self.dataset.subset(indices)
+        else:
+            # 如果底层 dataset 也没有 subset，则手动处理（兼容性补丁）
+            self.dataset = torch.utils.data.Subset(self.dataset, indices)
+        return self
+    # utils/bd_dataset_v2.py 中的修改
+    def __getattr__(self, name):
+        # 【新增断路逻辑】
+        # 如果是找 retrieve_state 或者是私有属性，直接报错，不要去内部数据集里找
+        if name == "retrieve_state" or name.startswith('_'):
+            raise AttributeError(f"'{type(self).__name__}' object has no attribute '{name}'")
+        
+        # 只有正常的属性才去包装的数据集里找
+        try:
+            return getattr(self.dataset, name)
+        except AttributeError:
+            raise AttributeError(f"'{type(self).__name__}' object has no attribute '{name}'")
     def __getitem__(self, index):
         img, label, *other_info = self.wrapped_dataset[index]
         if self.wrap_img_transform is not None:

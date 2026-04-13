@@ -125,18 +125,19 @@ def save_attack_result(
     :param bd_test : torch.utils.data.Dataset, # dataset without transform
     :param save_path : str,
     '''
-
+# 修复后的 save_dict
     save_dict = {
-            'model_name': model_name,
-            'num_classes' : num_classes,
-            'model': model,
-            'data_path': data_path,
-            'img_size' : img_size,
-            'clean_data': clean_data,
-            'bd_train': bd_train.retrieve_state() if bd_train is not None else None,
-            'bd_test': bd_test.retrieve_state(),
-            **kwargs,
-        }
+        'model_name': model_name,
+        'num_classes' : num_classes,
+        'model': model,
+        'data_path': data_path,
+        'img_size' : img_size,
+        'clean_data': clean_data,
+        # 使用 hasattr 安全检查：只有当对象确实有这个方法时才调用
+        'bd_train': bd_train.retrieve_state() if (bd_train is not None and hasattr(bd_train, 'retrieve_state')) else None,
+        'bd_test': bd_test.retrieve_state() if (bd_test is not None and hasattr(bd_test, 'retrieve_state')) else None,
+        **kwargs,
+    }
 
     logging.info(f"saving...")
     logging.debug(f"location : {save_path}/attack_result.pt") #, content summary :{pformat(summary_dict(save_dict))}")

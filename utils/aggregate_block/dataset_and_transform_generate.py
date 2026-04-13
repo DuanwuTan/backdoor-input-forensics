@@ -26,6 +26,7 @@ from utils.bd_dataset import xy_iter
 
 def get_num_classes(dataset_name: str) -> int:
     # idea : given name, return the number of class in the dataset
+    
     if dataset_name in ["mnist", "cifar10"]:
         num_classes = 10
     elif dataset_name == "gtsrb":
@@ -34,7 +35,7 @@ def get_num_classes(dataset_name: str) -> int:
         num_classes = 8
     elif dataset_name == 'cifar100':
         num_classes = 100
-    elif dataset_name == 'tiny':
+    elif dataset_name == 'tiny' or dataset_name == 'tiny-imagenet':
         num_classes = 200
     elif dataset_name == 'imagenet':
         num_classes = 1000

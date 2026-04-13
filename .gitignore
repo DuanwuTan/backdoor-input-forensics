@@ -13,4 +13,10 @@ utils/bd_img_transform/__pycache__/
 utils/bd_label_transform/__pycache__/
 utils/defense_utils/dbd/__pycache__/
 utils/defense_utils/dbd/model/__pycache__/
-utils/defense_utils/dbd/model/network/__pycache__/
+utils/defense_utils/dbd/model/network/__pycache__/"*.pt" 
+"*.pth" 
+"*.png" 
+"__pycache__/" 
+"*.npy" 
+"data/" 
+"record/" 

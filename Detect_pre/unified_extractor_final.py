@@ -141,6 +141,7 @@ def extract_final(attack_name, result_path, device='cuda'):
 # =========================================================
 if __name__ == '__main__':
     # 请确保以下路径指向你 record 文件夹下的真实文件
+    # 请确保以下路径指向你 record 文件夹下的真实文件
     attacks = {
         'badnets': './record/20260215_235930_badnet_attack_badnet_DvMv/attack_result.pt',
         'blended': './record/20260221_010831_blended_attack_blended_Aniv/attack_result.pt',
@@ -148,9 +149,14 @@ if __name__ == '__main__':
         'sig': './record/sig_attack_1/attack_result.pt',
         'refool': './record/refool_attack_2/attack_result.pt',
         'inputaware': './record/inputaware_attack_1/attack_result.pt',
-        'lira': './record/lira_attack_1/attack_result.pt', # 确认路径
-        'bpp': './record/bpp_attack_1/attack_result.pt'    # 确认路径
-    }
+        'lira': './record/lira_attack_1/attack_result.pt',
+        'bpp': './record/bpp_attack_1/attack_result.pt',
+        'trojannn': './record/trojannn_attack_final/attack_result.pt',
+        'badnet_all2all': './record/badnet_all2all_final/attack_result.pt' ,
+        'blind': './record/blind_attack_final/attack_result.pt',  
+        'ctrl': './record/ctrl_attack_final/attack_result.pt',
+        'ftrojan': './record/ftrojan_attack_final/attack_result.pt' ,
+ }
 
     device = 'cuda' if torch.cuda.is_available() else 'cpu'
     print(f"🚀 UCAT 终端收割机启动 | 设备: {device}")
@@ -166,4 +172,4 @@ if __name__ == '__main__':
         else:
             print(f"跳过 {name}，未找到模型文件。")
 
-    print("\n🎉 全部 8 种攻击特征已存入 ./features_final/，准备运行 ucat_final_eval.py！")
+    print("\n🎉 全部 13 种攻击特征已存入 ./features_final/，准备运行 ucat_final_eval.py！")

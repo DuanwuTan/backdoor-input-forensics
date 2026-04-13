@@ -44,16 +44,10 @@ def evaluate_final(attack_name, layers=['layer2', 'layer3', 'layer4']):
     print(f"  >>> [融合结果] AUROC: {final_auc:.4f}, FPR@95TPR: {final_fpr:.4f}")
     return final_auc, final_fpr
 
+ 
 if __name__ == '__main__':
-    attacks = ['badnets', 'blended', 'wanet', 'sig', 'refool', 'inputaware']
-    for a in attacks:
-        try:
-            evaluate_final(a)
-        except Exception as e:
-            print(f"评估 {a} 失败: {e}")
-if __name__ == '__main__':
-    # 加上新成员
-    attacks = ['badnets', 'blended', 'wanet', 'sig', 'refool', 'inputaware', 'lira', 'bpp']
+
+    attacks = ['badnets', 'blended', 'wanet', 'sig', 'refool', 'inputaware', 'lira', 'bpp', 'blind', 'ctrl', 'trojannn', 'badnet_all2all']
     for a in attacks:
         try:
             evaluate_final(a)

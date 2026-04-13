@@ -46,6 +46,24 @@ def evaluate_l1(attack_name, layers=['layer2', 'layer3', 'layer4'], k=5):
     return final_auc
 
 if __name__ == '__main__':
-    # 重点验证 LIRA 和 WaNet，这两类攻击最依赖度量方式
-    for a in ['lira', 'wanet', 'bpp']:
-        evaluate_l1(a, k=5)
+    # 扩展到所有 13 种攻击，生成最终论文大表
+    attack_list = [
+        'badnets', 'blended', 'wanet', 'sig', 
+        'refool', 'inputaware', 'lira', 'bpp', 'trojannn',
+        'badnet_all2all','blind','ctrl', 'ftrojan'
+
+    ]
+    results = {}
+    for a in attack_list:
+        try:
+            auc = evaluate_l1(a, k=5)
+            results[a] = auc
+        except Exception as e:
+            print(f"❌ 评估 {a} 时出错: {e}")
+            
+    print("\n" + "="*30)
+    print("🏆 UCAT CHAMPION 最终总表 🏆")
+    print("="*30)
+    for a, auc in results.items():
+        print(f"{a:12} : {auc:.4f}")
+    print("="*30)

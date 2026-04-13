@@ -1,0 +1,8 @@
+"*.pt" 
+"*.pth" 
+"*.png" 
+"__pycache__/" 
+"*.npy" 
+"data/" 
+"record/" 
+"Diagnosis_Crisis/" 
